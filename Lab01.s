@@ -20,28 +20,29 @@
 	.global main
 	
 main:
-	MOV R7, #0x04
-	MOV R0, #0x01
-	MOV R2, #0x0C
-	LDR   r1, =welcomestring
-	SVC 0
+
+@	Depreciated print using system call
+@	MOV R7, #0x04 				@ A 4 sets the write command (has to be in r7).
+@	MOV R0, #0x01 				@ A 1 sets the output device. 
+@	MOV R2, #0x12 				@ Length of string in hex.
+@	LDR   r1, =welcomestring 	@ load string into r1
+@	SVC 0 @ System call
+@	Depreciated print using system call
 	
-	LDR  r0, =stringarray1
-	BL printf
+	LDR r0, =welcomestring 		@ load welcome string into r0
+	BL printf 					@ call the c library printf function
 	
+	LDR  r0, =stringarray1 		@ load string into r0
+	BL printf @ Call printf
+	
+@ Exit program/return to OS.	
+
 	MOV r7, #0x01
 	SVC 0
 	
-	
-writeloop:
-	CMP R0, #10
-	BEQ writedone
-	
-	ADD R0, R0, #1
-	
 .data
 .balign 4
-welcomestring: .asciz "Now printing three arrays\n" @Length 0x1A
+welcomestring: .asciz "Welcome to Lab 01\n" @Length 0x12
 .balign 4
 stringarray1: .asciz "Now printing array one\n" @Length 0x17
 .balign 4
@@ -50,3 +51,8 @@ stringarray2: .asciz "Now printing array two\n" @Length 0x17
 stringarray3: .asciz "Now printing array three\n" @Length 0x19
 
 .global printf
+@	r0 - starting address of string to be printed
+@	r1 - If the string contains an output, i.e., r1 must contain the value to be printed.
+@	When the call returns registers: r0, r1, r2, r3 and r12 are changed.
+
+@	end of code and end of file
