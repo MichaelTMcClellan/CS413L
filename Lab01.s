@@ -74,6 +74,7 @@ printloop:
 	LDR r0, =loopstring			@ load %d into r1
 	LDR r1, [r4], #4				@ load value to be printed into r1, increment array pointer
 	BL printf					@ print decimal of array element
+	ADD r8, r8, #1				@ increment r8 by 1
 	CMP r8, #10					@ compare r8 to 10
 	BNE printloop	
 	LDR r10, =linebreak			@ load linebreak into r0
