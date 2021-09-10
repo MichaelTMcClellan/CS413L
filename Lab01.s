@@ -20,17 +20,26 @@
 	.global main
 	
 main:
-
-@	Depreciated print using system call
-@	MOV R7, #0x04 				@ A 4 sets the write command (has to be in r7).
-@	MOV R0, #0x01 				@ A 1 sets the output device. 
-@	MOV R2, #0x12 				@ Length of string in hex.
-@	LDR   r1, =welcomestring 	@ load string into r1
-@	SVC 0 @ System call
-@	Depreciated print using system call
 	
 	LDR r0, =welcomestring 		@ load welcome string into r0
 	BL printf 					@ call the c library printf function
+
+@ initialize addloop registers
+	LDR r0, =array1				@ load the address of array1 into r0
+	LDR r1, =array2				@ load the address of array2 into r1
+	LDR r2, =sumarray			@ load the address of sumarray into r2
+	LDR r3, #0					@ hold the data for array1[i]
+	LDR r4, #0					@ hold the data for array2[i]
+	LDR r5, #0					@ hold the data for sumarray[i]
+	LDR r8, #0					@ initialize r8 for loop counter
+addloop:
+	LDR r3, [r0], #4			@ load the element of array1 into r3 and increment r0 by 4bytes
+	LDR r4, [r1], #4			@ load the element of array2 into r4 and increment r1 by 4bytes
+	ADD r5, r3, r4				@ add array1 & array2 elements together and store in r5
+	STR r5, [r2], #4			@ store r5 into sumarray
+	ADD r8, r8, #1				@ increment r8 as loop counter
+	CMP	r8, #10					@ Compare r8 to 10
+	BNE	addloop
 	
 	LDR  r0, =stringarray1 		@ load string1 into r0
 	BL printf @ Call printf
@@ -38,7 +47,7 @@ main:
 	LDR  r0, =stringarray2 		@ load string2 into r0
 	BL printf @ Call printf
 	
-	LDR  r0, =stringarray3 		@ load string3 into r0
+	LDR  r0, =stringsumarry 		@ load string3 into r0
 	BL printf @ Call printf
 	
 @ Exit program/return to OS.	
@@ -51,11 +60,11 @@ main:
 welcomestring: .asciz "Welcome to Lab 01\n"
 stringarray1: .asciz "Now printing array one\n"
 stringarray2: .asciz "Now printing array two\n"
-stringarray3: .asciz "Now printing array three\n"
+stringsumarray: .asciz "Now printing summed array\n"
 
 array1: .word 32, 64, -9, 42, 234, 55, 92, 0, -23, -55
 array2: .word -32, 11, 6, -2222, -55, 1, 4, 0, 522, 7
-array3: .word 99, 99, 99 ,99 ,99 ,99, 99, 99, 99, 99
+sumarray: .word 99, 99, 99 ,99 ,99 ,99, 99, 99, 99, 99
 
 .global scanf
 .global printf
