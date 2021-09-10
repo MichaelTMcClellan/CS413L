@@ -55,7 +55,7 @@ addloop:
 	MOV r10, #10				@ initialize r8 for loop counter	
 	LDR r4, =array2				@ load address of array to be printed to r4
 	PUSH {r4}					@ push r4 on to the stack
-	BL printarraysub			
+	BL printloop			
 	
 	LDR  r0, =stringsumarray 	@ load string3 into r0
 	BL printf @ Call printf
@@ -63,13 +63,12 @@ addloop:
 	MOV r10, #10					@ initialize r8 for loop counter
 	LDR r4, =sumarray			@ load address of array to be printed to r4
 	PUSH {r4}					@ push r4 on to the stack
-	BL printarraysub	
+	BL printloop	
 	
 	@ Exit program/return to OS.	
 	MOV r7, #0x01
 	SVC 0
 	
-printarraysub:
 printloop:
 	LDR r0, =loopstring			@ load %d into r1
 	LDR r1, [r4], #4			@ load value to be printed into r1, increment array pointer
