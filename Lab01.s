@@ -81,7 +81,7 @@ printloop:
 	
 	LDR r0, =linebreak			@ load linebreak into r0
 	BL printf					@ print linebreak after list
-	MOV pc, r14
+	BX lr
 	
 	
 	
