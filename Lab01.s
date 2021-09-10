@@ -51,14 +51,14 @@ addloop:
 	
 	LDR  r0, =stringarray2 		@ load string2 into r0
 	BL printf @ Call printf
-	
+	MOV r10, #10					@ initialize r8 for loop counter	
 	LDR r4, =array2				@ load address of array to be printed to r4
 	PUSH {r4}					@ push r4 on to the stack
 	BL printarraysub			
 	
 	LDR  r0, =stringsumarray 	@ load string3 into r0
 	BL printf @ Call printf
-	
+	MOV r10, #10					@ initialize r8 for loop counter
 	LDR r4, =sumarray			@ load address of array to be printed to r4
 	PUSH {r4}					@ push r4 on to the stack
 	BL printarraysub	
