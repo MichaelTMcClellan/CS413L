@@ -73,7 +73,11 @@ printarraysub:
 printloop:
 	LDR r0, =loopstring			@ load %d into r1
 	LDR r1, [r4], #4				@ load value to be printed into r1, increment array pointer
+	
+	PUSH {r9}
 	BL printf					@ print decimal of array element
+	POP {r9}
+	
 	ADD r9, r9, #1				@ increment r9 as loop counter
 	CMP r9, #10					@ compare r9 to 10
 	BNE printloop	
