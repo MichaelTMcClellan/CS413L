@@ -28,10 +28,10 @@ main:
 	LDR r0, =array1				@ load the address of array1 into r0
 	LDR r1, =array2				@ load the address of array2 into r1
 	LDR r2, =sumarray			@ load the address of sumarray into r2
-	LDR r3, #0					@ hold the data for array1[i]
-	LDR r4, #0					@ hold the data for array2[i]
-	LDR r5, #0					@ hold the data for sumarray[i]
-	LDR r8, #0					@ initialize r8 for loop counter
+	MOV r3, #0					@ hold the data for array1[i]
+	MOV r4, #0					@ hold the data for array2[i]
+	MOV r5, #0					@ hold the data for sumarray[i]
+	MOV r8, #0					@ initialize r8 for loop counter
 addloop:
 	LDR r3, [r0], #4			@ load the element of array1 into r3 and increment r0 by 4bytes
 	LDR r4, [r1], #4			@ load the element of array2 into r4 and increment r1 by 4bytes
