@@ -32,7 +32,13 @@ main:
 	LDR r0, =welcomestring 		@ load welcome string into r0
 	BL printf 					@ call the c library printf function
 	
-	LDR  r0, =stringarray1 		@ load string into r0
+	LDR  r0, =stringarray1 		@ load string1 into r0
+	BL printf @ Call printf
+	
+	LDR  r0, =stringarray2 		@ load string2 into r0
+	BL printf @ Call printf
+	
+	LDR  r0, =stringarray3 		@ load string3 into r0
 	BL printf @ Call printf
 	
 @ Exit program/return to OS.	
@@ -42,17 +48,20 @@ main:
 	
 .data
 .balign 4
-welcomestring: .asciz "Welcome to Lab 01\n" @Length 0x12
-.balign 4
-stringarray1: .asciz "Now printing array one\n" @Length 0x17
-.balign 4
-stringarray2: .asciz "Now printing array two\n" @Length 0x17
-.balign 4
-stringarray3: .asciz "Now printing array three\n" @Length 0x19
+welcomestring: .asciz "Welcome to Lab 01\n"
+stringarray1: .asciz "Now printing array one\n"
+stringarray2: .asciz "Now printing array two\n"
+stringarray3: .asciz "Now printing array three\n"
 
+array1: .skip 40
+array2: .skip 40
+array3: .skip 40
+
+.global scanf
 .global printf
 @	r0 - starting address of string to be printed
 @	r1 - If the string contains an output, i.e., r1 must contain the value to be printed.
 @	When the call returns registers: r0, r1, r2, r3 and r12 are changed.
 
 @	end of code and end of file
+
