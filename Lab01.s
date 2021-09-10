@@ -74,7 +74,7 @@ printloop:
 	BL printf					@ print decimal of array element
 	
 	SUB r10, r10, #1
-	CMP r8, #0
+	CMP r10, #0
 	BNE printloop
 	
 	LDR r10, =linebreak			@ load linebreak into r0
