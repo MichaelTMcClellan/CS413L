@@ -79,10 +79,10 @@ printloop:
 	BL printf					@ print decimal of array element
 
 	LDR r10, =loopcounter
-	LDR r10, [r10]
-	ADD r10, r10, #1
-	STR r10, [r9]
-	CMP r10, #10
+	LDR r11, [r10]
+	ADD r11, r11, #1
+	STR r11, [r10]
+	CMP r11, #10
 	BNE printloop
 	
 	LDR r10, =linebreak			@ load linebreak into r0
