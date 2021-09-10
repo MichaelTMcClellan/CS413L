@@ -44,7 +44,7 @@ addloop:
 	LDR  r0, =stringarray1 		@ load string1 into r0
 	BL printf @ Call printf
 
-	MOV r8, #20					@ initialize r8 for loop counter
+	MOV r10, #10					@ initialize r8 for loop counter
 	LDR r4, =array1				@ load address of array to be printed to r4
 	PUSH {r4}					@ push r4 on to the stack
 	BL printloop			
@@ -73,8 +73,8 @@ printloop:
 	LDR r1, [r4], #4			@ load value to be printed into r1, increment array pointer
 	BL printf					@ print decimal of array element
 	
-	SUB r8, r8, #1
-	CMP r8, #10
+	SUB r10, r10, #1
+	CMP r8, #0
 	BNE printloop
 	
 	LDR r10, =linebreak			@ load linebreak into r0
