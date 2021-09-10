@@ -80,7 +80,7 @@ printloop:
 
 	LDR r10, =loopcounter
 	LDR r11, [r10]
-	ADD r11, r11, #1
+	@ADD r11, r11, #1
 	STR r11, [r10]
 	CMP r11, #10
 	BNE printloop
