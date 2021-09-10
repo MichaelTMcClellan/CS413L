@@ -53,9 +53,9 @@ stringarray1: .asciz "Now printing array one\n"
 stringarray2: .asciz "Now printing array two\n"
 stringarray3: .asciz "Now printing array three\n"
 
-array1: .skip 40
-array2: .skip 40
-array3: .skip 40
+array1: .word 32, 64, -9, 42, 234, 55, 92, 0, -23, -55
+array2: .word -32, 11, 6, -2222, -55, 1, 4, 0, 522, 7
+array3: .word 99, 99, 99 ,99 ,99 ,99, 99, 99, 99, 99
 
 .global scanf
 .global printf
