@@ -47,7 +47,7 @@ addloop:
 	LDR  r0, =stringarray2 		@ load string2 into r0
 	BL printf @ Call printf
 	
-	LDR  r0, =stringsumarry 		@ load string3 into r0
+	LDR  r0, =stringsumarray 		@ load string3 into r0
 	BL printf @ Call printf
 	
 @ Exit program/return to OS.	
