@@ -67,27 +67,18 @@ addloop:
 	SVC 0
 	
 printarraysub:
-	POP {r4}
-	PUSH {r14}
-
-	LDR r10, =loopcounter
-	MOV r9, #0
-	STR r9, [r10]	 			@ move 0 into 
+	MOV r8, #0					@ initialize r8 for loop counter
 printloop:
 	LDR r0, =loopstring			@ load %d into r1
 	LDR r1, [r4], #4			@ load value to be printed into r1, increment array pointer
 	BL printf					@ print decimal of array element
-
-	LDR r10, =loopcounter
-	LDR r11, [r10]
-	@ADD r11, r11, #1
-	STR r11, [r10]
-	CMP r11, #10
+	
+	ADD r8, r8, #1
+	CMP r8, #10
 	BNE printloop
 	
 	LDR r10, =linebreak			@ load linebreak into r0
 	BL printf					@ print linebreak after list
-	POP  {r14}
 	MOV pc, lr
 	
 	
