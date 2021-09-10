@@ -67,7 +67,7 @@ addloop:
 	MOV r7, #0x01
 	SVC 0
 	
-@printarraysub:
+printarraysub:
 printloop:
 	LDR r0, =loopstring			@ load %d into r1
 	LDR r1, [r4], #4			@ load value to be printed into r1, increment array pointer
