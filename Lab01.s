@@ -47,7 +47,7 @@ addloop:
 	MOV r8, #0					@ initialize r8 for loop counter
 	LDR r4, =array1				@ load address of array to be printed to r4
 	PUSH {r4}					@ push r4 on to the stack
-	BL printarraysub			
+	BL printloop			
 	
 	LDR  r0, =stringarray2 		@ load string2 into r0
 	BL printf @ Call printf
