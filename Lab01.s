@@ -70,7 +70,7 @@ addloop:
 	SVC 0
 	
 printarraysub:
-	PUSH {LR}
+	PUSH {r14}
 printloop:
 	LDR r0, =loopstring			@ load %d into r1
 	LDR r1, [r4], #4			@ load value to be printed into r1, increment array pointer
@@ -82,7 +82,7 @@ printloop:
 	
 	LDR r0, =linebreak			@ load linebreak into r0
 	BL printf					@ print linebreak after list
-	POP {LR}
+	POP {r14}
 	MOV pc, lr
 	
 	
