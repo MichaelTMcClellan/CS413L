@@ -79,7 +79,7 @@ printloop:
 	LDR r10, =linebreak			@ load linebreak into r0
 	BL printf					@ print linebreak after list
 	POP  {r14}
-	B r14
+	B lr
 	
 	
 	
