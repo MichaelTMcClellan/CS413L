@@ -44,6 +44,7 @@ addloop:
 	LDR  r0, =stringarray1 		@ load string1 into r0
 	BL printf @ Call printf
 
+	MOV r8, #0					@ initialize r8 for loop counter
 	LDR r4, =array1				@ load address of array to be printed to r4
 	PUSH {r4}					@ push r4 on to the stack
 	BL printarraysub			
@@ -66,8 +67,7 @@ addloop:
 	MOV r7, #0x01
 	SVC 0
 	
-printarraysub:
-	MOV r8, #0					@ initialize r8 for loop counter
+@printarraysub:
 printloop:
 	LDR r0, =loopstring			@ load %d into r1
 	LDR r1, [r4], #4			@ load value to be printed into r1, increment array pointer
