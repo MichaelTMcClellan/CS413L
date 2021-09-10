@@ -69,20 +69,19 @@ addloop:
 printarraysub:
 	POP {r4}
 	PUSH {r14}
-	@MOV r9, #0					@ initialize r8 for loop counter
+
 	LDR r10, =loopcounter
 	MOV r9, #0
-	STR r9, =loopcounter		@ move 0 into 
+	STR r9, [r10]	 			@ move 0 into 
 printloop:
 	LDR r0, =loopstring			@ load %d into r1
-	LDR r1, [r4], #4				@ load value to be printed into r1, increment array pointer
+	LDR r1, [r4], #4			@ load value to be printed into r1, increment array pointer
 	BL printf					@ print decimal of array element
-	@ADD r9, r9, #1				@ increment r9 as loop counter
-	@CMP r9, #10					@ compare r9 to 10
+
 	LDR r10, =loopcounter
 	LDR r10, [r10]
 	ADD r10, r10, #1
-	STR r10, =loopcounter
+	STR r10, [r9]
 	CMP r10, #10
 	BNE printloop
 	
