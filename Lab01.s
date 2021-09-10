@@ -72,7 +72,7 @@ printarraysub:
 	MOV r8, #0					@ initialize r8 for loop counter
 printloop:
 	LDR r0, =loopstring			@ load %d into r1
-	LDR r1, [r4] #4				@ load value to be printed into r1, increment array pointer
+	LDR r1, [r4], #4				@ load value to be printed into r1, increment array pointer
 	BL printf					@ print decimal of array element
 	CMP r8, #10					@ compare r8 to 10
 	BNE printloop	
