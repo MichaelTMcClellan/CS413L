@@ -77,7 +77,7 @@ printloop:
 	CMP r10, #0
 	BNE printloop
 	
-	LDR r10, =linebreak			@ load linebreak into r0
+	LDR r0, =linebreak			@ load linebreak into r0
 	BL printf					@ print linebreak after list
 	MOV pc, lr
 	
