@@ -70,7 +70,7 @@ addloop:
 	SVC 0
 	
 printarraysub:
-	PUSH{LR}
+	PUSH {LR}
 printloop:
 	LDR r0, =loopstring			@ load %d into r1
 	LDR r1, [r4], #4			@ load value to be printed into r1, increment array pointer
