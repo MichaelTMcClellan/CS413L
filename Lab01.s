@@ -69,18 +69,22 @@ addloop:
 printarraysub:
 	POP {r4}
 	PUSH {r14}
-	MOV r9, #0					@ initialize r8 for loop counter
+	@MOV r9, #0					@ initialize r8 for loop counter
+	LDR r10, =loopcounter
+	MOV [r10], #0
 printloop:
 	LDR r0, =loopstring			@ load %d into r1
 	LDR r1, [r4], #4				@ load value to be printed into r1, increment array pointer
-	
-	PUSH {r9}
 	BL printf					@ print decimal of array element
-	POP {r9}
+	@ADD r9, r9, #1				@ increment r9 as loop counter
+	@CMP r9, #10					@ compare r9 to 10
+	LDR r10, =loopcounter
+	LDR r10, [r10]
+	ADD r10, r10, #1
+	MOV =loopcounter, r10
+	CMP r10, #10
+	BNE printloop
 	
-	ADD r9, r9, #1				@ increment r9 as loop counter
-	CMP r9, #10					@ compare r9 to 10
-	BNE printloop	
 	LDR r10, =linebreak			@ load linebreak into r0
 	BL printf					@ print linebreak after list
 	POP  {r14}
@@ -96,6 +100,8 @@ stringarray2: .asciz "Now printing array two\n"
 stringsumarray: .asciz "Now printing summed array\n"
 loopstring: .asciz "%d, "
 linebreak: .asciz "\n"
+
+loopcounter: .word 10
 
 array1: .word 32, 64, -9, 42, 234, 55, 92, 0, -23, -55
 array2: .word -32, 11, 6, -2222, -55, 1, 4, 0, 522, 7
