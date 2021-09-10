@@ -51,16 +51,16 @@ addloop:
 	LDR  r0, =stringarray2 		@ load string2 into r0
 	BL printf @ Call printf
 	
-	LDR r4, =array2				@ load address of array to be printed to r4
-	PUSH {r4}					@ push r4 on to the stack
-	BL printarraysub			
+	@LDR r4, =array2				@ load address of array to be printed to r4
+	@PUSH {r4}					@ push r4 on to the stack
+	@BL printarraysub			
 	
 	LDR  r0, =stringsumarray 	@ load string3 into r0
 	BL printf @ Call printf
 	
-	LDR r4, =sumarray			@ load address of array to be printed to r4
-	PUSH {r4}					@ push r4 on to the stack
-	BL printarraysub	
+	@LDR r4, =sumarray			@ load address of array to be printed to r4
+	@PUSH {r4}					@ push r4 on to the stack
+	@BL printarraysub	
 	
 	@ Exit program/return to OS.	
 	MOV r7, #0x01
@@ -91,8 +91,6 @@ stringarray2: .asciz "Now printing array two\n"
 stringsumarray: .asciz "Now printing summed array\n"
 loopstring: .asciz "%d, "
 linebreak: .asciz "\n"
-
-loopcounter: .word 10
 
 array1: .word 32, 64, -9, 42, 234, 55, 92, 0, -23, -55
 array2: .word -32, 11, 6, -2222, -55, 1, 4, 0, 522, 7
