@@ -71,7 +71,8 @@ printarraysub:
 	PUSH {r14}
 	@MOV r9, #0					@ initialize r8 for loop counter
 	LDR r10, =loopcounter
-	MOV [r10], #0
+	MOV r9, #0
+	STR r9, =loopcounter		@ move 0 into 
 printloop:
 	LDR r0, =loopstring			@ load %d into r1
 	LDR r1, [r4], #4				@ load value to be printed into r1, increment array pointer
@@ -81,7 +82,7 @@ printloop:
 	LDR r10, =loopcounter
 	LDR r10, [r10]
 	ADD r10, r10, #1
-	MOV =loopcounter, r10
+	STR r10, =loopcounter
 	CMP r10, #10
 	BNE printloop
 	
